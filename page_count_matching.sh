@@ -4,19 +4,20 @@ clear
 cat << "EOF"
 
 
-    Islandora
-     ____                     ____                  _      ___
-    |  _ \ __ _  __ _  ___   / ___|___  _   _ _ __ | |_   ( _ )
-    | |_) / _` |/ _` |/ _ \ | |   / _ \| | | | '_ \| __|  / _ \/\
-    |  __/ (_| | (_| |  __/ | |__| (_) | |_| | | | | |_  | (_>  <
-    |_|   \__,_|\__, |\___|  \____\___/ \__,_|_| |_|\__|  \___/\/
-               |___/
-     __  __       _       _     _
-    |  \/  | __ _| |_ ___| |__ (_)_ __   __ _
-    | |\/| |/ _` | __/ __| '_ \| | '_ \ / _` |
-    | |  | | (_| | || (__| | | | | | | | (_| |
-    |_|  |_|\__,_|\__\___|_| |_|_|_| |_|\__, |
-                                        |___/
+Islandora
+ ____                     ____                  _      ___
+|  _ \ __ _  __ _  ___   / ___|___  _   _ _ __ | |_   ( _ )
+| |_) / _` |/ _` |/ _ \ | |   / _ \| | | | '_ \| __|  / _ \/\
+|  __/ (_| | (_| |  __/ | |__| (_) | |_| | | | | |_  | (_>  <
+|_|   \__,_|\__, |\___|  \____\___/ \__,_|_| |_|\__|  \___/\/
+           |___/
+ __  __       _       _     _
+|  \/  | __ _| |_ ___| |__ (_)_ __   __ _
+| |\/| |/ _` | __/ __| '_ \| | '_ \ / _` |
+| |  | | (_| | || (__| | | | | | | | (_| |
+|_|  |_|\__,_|\__\___|_| |_|_|_| |_|\__, |
+                                    |___/
+
 
               Count how many books & pages are in a given directory.
               Count how many books & pages are in Solr for a given collection.
@@ -178,7 +179,7 @@ find ${FIND_PATTERN} -type f | sed -e 's/.*\.//' | sort | uniq -c | sort -n | gr
 echo -e "\n\n"
 # Decide to either keep or throw out the leftover files.
 while true; do
-    read -p "\tThrow aways the left-overs? [yn] " yn
+    read -p "Throw aways the left-overs? [yn] " yn
     case $yn in
         [Yy]* ) (garbage_disposal); break;;
         [Nn]* ) exit;;
