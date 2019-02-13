@@ -24,6 +24,7 @@ Islandora
               Find the collection's book/pages on the filesystem.
               Verify everything matches including the MODS values for pages.
 EOF
+
 echo -e "\n\n"
 
 # Set Variables of where to look
