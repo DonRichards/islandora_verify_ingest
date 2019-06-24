@@ -95,10 +95,10 @@ echo -e "\t\t\e[32mFile system count complete\033[0m\n\n "
 
 # Get the PIDs of books
 echo -e "\n\tGetting PIDs of all of the books within $COLLECTION_NAME collection\n"
-SOLR_PAGE_COUNT=$(curl -X GET --progress-bar "$SOLR_DOMAIN_AND_PORT/solr/collection1/select?q=PID%3Avanvactor%5C%3A*&fq=%2BRELS_EXT_hasModel_uri_ss%3Ainfo%5C%3Afedora%2Fislandora%5C%3ApageCModel&sort=PID+asc&rows=0&fl=PID&wt=xml&indent=true" | sed -n '/numFound="/,/?.*"/p' | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')
-curl -X GET --progress-bar "$SOLR_DOMAIN_AND_PORT/solr/collection1/select?q=PID%3Avanvactor%5C%3A*&fq=%2BRELS_EXT_hasModel_uri_ss%3Ainfo%5C%3Afedora%2Fislandora%5C%3ApageCModel&sort=PID+asc&rows=100000&fl=PID&wt=csv&indent=true" | tail -n +2 >> book_page_pids_from_curl.txt
+SOLR_PAGE_COUNT=$(curl -X GET --progress-bar "$SOLR_DOMAIN_AND_PORT/solr/collection1/select?q=PID%3A${COLLECTION_NAME}%5C%3A*&fq=%2BRELS_EXT_hasModel_uri_ss%3Ainfo%5C%3Afedora%2Fislandora%5C%3ApageCModel&sort=PID+asc&rows=0&fl=PID&wt=xml&indent=true" | sed -n '/numFound="/,/?.*"/p' | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')
+curl -X GET --progress-bar "$SOLR_DOMAIN_AND_PORT/solr/collection1/select?q=PID%3A${COLLECTION_NAME}%5C%3A*&fq=%2BRELS_EXT_hasModel_uri_ss%3Ainfo%5C%3Afedora%2Fislandora%5C%3ApageCModel&sort=PID+asc&rows=100000&fl=PID&wt=csv&indent=true" | tail -n +2 >> book_page_pids_from_curl.txt
 page_pids_in_solr=($(wc -l < book_page_pids_from_curl.txt))
-curl -X GET --progress-bar "$SOLR_DOMAIN_AND_PORT/solr/collection1/select?q=PID%3Avanvactor%5C%3A*&fq=%2BRELS_EXT_hasModel_uri_s%3Ainfo%5C%3Afedora%2Fislandora%5C%3AbookCModel&sort=PID+asc&rows=100000&fl=PID&wt=csv" | tail -n +2 >> books_pids_from_curl.txt
+curl -X GET --progress-bar "$SOLR_DOMAIN_AND_PORT/solr/collection1/select?q=PID%3A${COLLECTION_NAME}%5C%3A*&fq=%2BRELS_EXT_hasModel_uri_s%3Ainfo%5C%3Afedora%2Fislandora%5C%3AbookCModel&sort=PID+asc&rows=100000&fl=PID&wt=csv" | tail -n +2 >> books_pids_from_curl.txt
 
 
 declare -i book_pid_count=0
