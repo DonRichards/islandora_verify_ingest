@@ -87,8 +87,12 @@ connect_to_collection(){
 echo -e "\n\tCounting pages on filesystem"
 $(find ${FIND_PATTERN} -name '*' -exec file {} \; | grep -o -P '^.+: \w+ image' > images_on_file_system.txt) &
 $(find ${FIND_PATTERN} -name '*' -exec file {} \; | grep -o -P '^.+: \w+ pdf' > pdfs_on_file_system.txt) &
+
 # Count how many pages for each book by sorted by physical ID.
 list=$(find ${FIND_PATTERN} -type d -exec sh -c 'echo "${0##*/} $(ls $0 | wc -l)" ' {} \;)
+firstLine=`echo "${list}" | head -1`
+[[ $firstLine =~ [^[:digit:]] ]] && list=$(echo "$list" | tail -n +2 )
+
 printf '%b\n' "${list[@]}" > file_systems_local_id_and_page_count.txt
 book_files_in_filesystem=($(wc -l < file_systems_local_id_and_page_count.txt))
 echo -e "\t\t\e[32mFile system count complete\033[0m\n\n "
