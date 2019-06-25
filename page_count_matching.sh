@@ -153,7 +153,7 @@ echo -e "\n\n\n\t\t\e[32mWaiting over.\033[0m"
 echo -e "\n\tComparing Counts and storing the ones that don't match"
 # Compare what the filesystem says it has for pages vs the MODS page count.
 # array of IDs that had a count that differed from the system's file structure
-stuff=$(comm -23 <(sort mods_local_id_and_page_count.txt) <(sort file_systems_local_id_and_page_count2.txt) | cut -f1 -d" ")
+stuff=$(comm -23 <(sort mods_local_id_and_page_count.txt) <(sort file_systems_local_id_and_page_count.txt) | cut -f1 -d" ")
 wait
 echo -e "\n\t\t\e[32mComparing complete.\033[0m\n\n"
 
